@@ -1,0 +1,12 @@
+llm_config:
+  table_selector_llm:
+    params:
+      model_name: gpt-4o-mini
+      temperature: 0.0
+    system_prompt: src/prompts/table_selector.txt
+
+  codegen_llm:
+    params:
+      model_name: gpt-4o-mini
+      temperature: 0.0
+    system_prompt: src/prompts/code_generator.txt 
