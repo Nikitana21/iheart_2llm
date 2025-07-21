@@ -26,9 +26,6 @@ question = input("Ask a question about your data: ")
 
 selector_prompt = table_selector_template.replace("{{TABLE_METADATA}}", formatted_metadata).replace("{{question}}", question)
 
-print("\n--- Table Selector Prompt ---\n")
-print(selector_prompt)
-print("\n----------------------------\n")
 
 aqxle.init("config.yml")
 
@@ -39,7 +36,7 @@ with aqxle.params(name="table_selector", history_length=3, max_retries=2, loggin
     )
 
 # Print raw output for debugging
-print("LLM raw output:", repr(selector_result.data))
+#print("LLM raw output:", repr(selector_result.data))
 
 # Try to extract JSON block from LLM output
 try:
@@ -88,9 +85,6 @@ filtered_metadata_str = format_metadata_for_prompt(selected_metadata)
 
 codegen_prompt = codegen_template.replace("{{TABLE_METADATA}}", filtered_metadata_str).replace("{{question}}", question)
 
-print("\n--- Codegen Prompt ---\n")
-print(codegen_prompt)
-print("\n---------------------\n")
 
 with aqxle.params(name="logicgen", history_length=5, max_retries=3, logging=True) as session:
     result = (
